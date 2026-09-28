@@ -2,69 +2,131 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anees × Kuchu Puchu ❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   background:#050507;
-  color:#fff;
+  color:white;
   font-family:Georgia,"Times New Roman",serif;
   overflow-x:hidden;
 }
-body:before{
+
+/* ===== BACKGROUND ===== */
+
+body::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-3;
+  z-index:-5;
   background:
-  radial-gradient(circle at 15% 20%,#ff285c33,transparent 30%),
-  radial-gradient(circle at 85% 75%,#713cff33,transparent 30%),
-  linear-gradient(135deg,#030305,#100711,#020203);
+    radial-gradient(circle at 15% 20%,rgba(255,40,92,.18),transparent 30%),
+    radial-gradient(circle at 85% 75%,rgba(100,50,255,.16),transparent 30%),
+    linear-gradient(135deg,#030305,#100711,#020203);
 }
+
 .grain{
   position:fixed;
   inset:0;
   z-index:20;
   pointer-events:none;
-  opacity:.045;
-  background-image:repeating-radial-gradient(circle,#fff 0,#fff 1px,transparent 1px,transparent 4px);
+  opacity:.035;
+  background-image:
+    repeating-radial-gradient(
+      circle,
+      #fff 0,
+      #fff 1px,
+      transparent 1px,
+      transparent 4px
+    );
 }
+
+/* ===== LOADER ===== */
+
 #loader{
   position:fixed;
   inset:0;
   background:#030305;
-  z-index:100;
+  z-index:1000;
   display:flex;
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  transition:1s;
+
+  animation:loaderHide .8s ease forwards;
+  animation-delay:2s;
 }
-#loader.hide{opacity:0;visibility:hidden}
-.loader-heart{font-size:60px;animation:pulse 1.2s infinite}
+
+@keyframes loaderHide{
+  0%{
+    opacity:1;
+    visibility:visible;
+  }
+
+  100%{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+
+.loader-heart{
+  font-size:60px;
+  animation:pulse 1.2s infinite;
+}
+
 .loader-text{
   margin-top:18px;
   font-size:11px;
   letter-spacing:5px;
   color:#aaa;
 }
-@keyframes pulse{50%{transform:scale(1.25)}}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.25);
+  }
+}
+
+/* ===== NAV ===== */
 
 nav{
   position:fixed;
   top:0;
+  left:0;
   width:100%;
   padding:20px 28px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   z-index:50;
-  background:linear-gradient(#000b,transparent);
+  background:linear-gradient(
+    rgba(0,0,0,.8),
+    transparent
+  );
 }
-.logo{font-weight:bold;letter-spacing:2px}
-.logo span{color:#ff557d}
+
+.logo{
+  font-size:15px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+.logo span{
+  color:#ff557d;
+}
+
 nav a{
   color:white;
   text-decoration:none;
@@ -72,6 +134,8 @@ nav a{
   font-size:12px;
   opacity:.8;
 }
+
+/* ===== HERO ===== */
 
 .hero{
   min-height:100vh;
@@ -83,14 +147,24 @@ nav a{
   position:relative;
   overflow:hidden;
 }
+
 .hero-content{
   max-width:900px;
-  animation:enter 1.6s ease;
+  animation:enter 1.5s ease;
 }
+
 @keyframes enter{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:translateY(0)}
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
+
 .small{
   text-transform:uppercase;
   letter-spacing:7px;
@@ -98,16 +172,19 @@ nav a{
   font-size:11px;
   margin-bottom:25px;
 }
+
 h1{
   font-size:clamp(55px,12vw,130px);
   line-height:.85;
   font-weight:normal;
   letter-spacing:-5px;
 }
+
 h1 span{
   color:#ff557d;
   font-style:italic;
 }
+
 .subtitle{
   max-width:650px;
   margin:35px auto;
@@ -115,77 +192,110 @@ h1 span{
   line-height:1.9;
   font-size:17px;
 }
+
 .scroll{
   color:#999;
   font-size:10px;
   letter-spacing:4px;
   text-transform:uppercase;
 }
-.scroll:after{
+
+.scroll::after{
   content:"↓";
   display:block;
   font-size:25px;
   margin-top:12px;
   animation:bounce 1.5s infinite;
 }
-@keyframes bounce{50%{transform:translateY(8px)}}
+
+@keyframes bounce{
+  50%{
+    transform:translateY(8px);
+  }
+}
+
+/* ===== GLOWING ORBS ===== */
 
 .orb{
   position:absolute;
   border-radius:50%;
-  filter:blur(5px);
+  filter:blur(8px);
   opacity:.25;
   animation:float 8s infinite ease-in-out;
 }
-.one{
-  width:300px;height:300px;
-  background:#ff285c;
-  left:-120px;top:20%;
-}
-.two{
-  width:270px;height:270px;
-  background:#6b38ff;
-  right:-100px;bottom:10%;
-}
-@keyframes float{50%{transform:translateY(-35px) scale(1.1)}}
 
-section{padding:110px 7%}
+.one{
+  width:300px;
+  height:300px;
+  background:#ff285c;
+  left:-120px;
+  top:20%;
+}
+
+.two{
+  width:270px;
+  height:270px;
+  background:#6b38ff;
+  right:-100px;
+  bottom:10%;
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-35px) scale(1.1);
+  }
+}
+
+/* ===== SECTIONS ===== */
+
+section{
+  padding:110px 7%;
+}
+
 .title{
   text-align:center;
   margin-bottom:60px;
 }
+
 .title small{
   color:#ff6687;
   letter-spacing:5px;
   text-transform:uppercase;
   font-size:10px;
 }
+
 .title h2{
   margin-top:15px;
   font-size:clamp(40px,7vw,75px);
   font-weight:normal;
 }
 
+/* ===== STORY ===== */
+
 .story{
   max-width:850px;
   margin:auto;
   text-align:center;
 }
+
 .story p{
   color:#c7c7c7;
   font-size:18px;
   line-height:2;
   margin-bottom:25px;
 }
+
 .quote{
   margin:50px auto;
   padding:30px;
   border-left:2px solid #ff557d;
-  background:#ffffff08;
+  background:rgba(255,255,255,.03);
   font-size:24px;
   line-height:1.6;
   font-style:italic;
 }
+
+/* ===== MEMORY CARDS ===== */
 
 .cards{
   max-width:1100px;
@@ -194,32 +304,43 @@ section{padding:110px 7%}
   grid-template-columns:repeat(3,1fr);
   gap:25px;
 }
+
 .card{
   min-height:300px;
   padding:30px;
-  background:linear-gradient(145deg,#ffffff0d,#ffffff02);
-  border:1px solid #ffffff12;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.07),
+      rgba(255,255,255,.02)
+    );
+  border:1px solid rgba(255,255,255,.08);
   transition:.5s;
   position:relative;
   overflow:hidden;
 }
+
 .card:hover{
   transform:translateY(-12px);
-  border-color:#ff557d66;
-  box-shadow:0 20px 60px #ff285c1f;
+  border-color:rgba(255,85,125,.5);
+  box-shadow:
+    0 20px 60px rgba(255,40,92,.12);
 }
+
 .num{
   position:absolute;
   right:20px;
   top:10px;
   font-size:55px;
-  color:#ffffff0d;
+  color:rgba(255,255,255,.06);
 }
+
 .card h3{
   margin-top:90px;
   font-size:25px;
   font-weight:normal;
 }
+
 .card p{
   margin-top:15px;
   color:#aaa;
@@ -227,30 +348,42 @@ section{padding:110px 7%}
   font-size:14px;
 }
 
+/* ===== LETTER ===== */
+
 .letter{
   max-width:800px;
   margin:auto;
   padding:55px;
   text-align:center;
-  background:linear-gradient(145deg,#ffffff0d,#ffffff02);
-  border:1px solid #ffffff12;
-  box-shadow:0 30px 100px #0008;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.07),
+      rgba(255,255,255,.02)
+    );
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 30px 100px rgba(0,0,0,.5);
 }
+
 .letter .heart{
   font-size:45px;
   margin-bottom:25px;
 }
+
 .letter p{
   color:#d0d0d0;
   line-height:2;
   font-size:17px;
 }
+
 .signature{
   margin-top:35px;
   color:#ff6688;
   font-size:25px;
   font-style:italic;
 }
+
+/* ===== FINAL ===== */
 
 .final{
   min-height:70vh;
@@ -259,43 +392,54 @@ section{padding:110px 7%}
   align-items:center;
   text-align:center;
 }
+
 .final h2{
   font-size:clamp(45px,9vw,100px);
   font-weight:normal;
   line-height:1;
 }
+
 .final span{
   color:#ff557d;
   font-style:italic;
 }
+
 .final p{
   margin-top:30px;
   color:#aaa;
 }
+
 .final-heart{
   margin-top:35px;
   font-size:55px;
   animation:pulse 1.5s infinite;
 }
 
+/* ===== FOOTER ===== */
+
 footer{
   padding:35px 20px;
   text-align:center;
-  border-top:1px solid #ffffff0d;
+  border-top:1px solid rgba(255,255,255,.07);
   color:#777;
   font-size:11px;
   letter-spacing:2px;
 }
 
+/* ===== SCROLL ANIMATION ===== */
+
 .reveal{
   opacity:0;
   transform:translateY(45px);
-  transition:1s;
+  transition:1s ease;
 }
+
 .reveal.show{
   opacity:1;
   transform:translateY(0);
 }
+
+/* ===== FLOATING HEARTS ===== */
 
 .float-heart{
   position:fixed;
@@ -304,31 +448,405 @@ footer{
   pointer-events:none;
   animation:rise 5s linear forwards;
 }
+
 @keyframes rise{
-  from{transform:translateY(0);opacity:0}
-  15%{opacity:1}
-  to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+  from{
+    transform:translateY(0) rotate(0);
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  to{
+    transform:
+      translateY(-110vh)
+      rotate(360deg);
+    opacity:0;
+  }
 }
 
+/* ===== MOBILE ===== */
+
 @media(max-width:800px){
-  nav .links{display:none}
-  section{padding:80px 20px}
-  .cards{grid-template-columns:1fr}
-  .letter{padding:35px 22px}
-  .quote{font-size:20px}
+
+  nav{
+    padding:18px;
+  }
+
+  nav .links{
+    display:none;
+  }
+
+  section{
+    padding:80px 20px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .letter{
+    padding:35px 22px;
+  }
+
+  .quote{
+    font-size:20px;
+  }
+
+  .subtitle{
+    font-size:15px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- LOADING SCREEN -->
+
 <div id="loader">
   <div class="loader-heart">❤️</div>
-  <div class="loader-text">A little story about two friends...</div>
+  <div class="loader-text">
+    A little story about two friends...
+  </div>
 </div>
 
 <div class="grain"></div>
 
+<!-- NAVIGATION -->
+
 <nav>
-  <div class="logo">ANEES <span>×</span> KUCHU PUCHU</div>
-  <div class="links
+
+  <div class="logo">
+    ANEES <span>×</span> KUCHU PUCHU
+  </div>
+
+  <div class="links">
+    <a href="#story">Story</a>
+    <a href="#memories">Memories</a>
+    <a href="#letter">Letter</a>
+  </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <div class="hero-content">
+
+    <div class="small">
+      A little cinematic story
+    </div>
+
+    <h1>
+      Anees<br>
+      <span>× Kuchu Puchu</span>
+    </h1>
+
+    <p class="subtitle">
+      Some friendships don't need a reason.
+      They just happen... and slowly become
+      one of the most beautiful parts of life.
+    </p>
+
+    <div class="scroll">
+      Scroll to begin
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- STORY -->
+
+<section id="story">
+
+  <div class="title reveal">
+
+    <small>Chapter 01</small>
+
+    <h2>Our Story</h2>
+
+  </div>
+
+  <div class="story reveal">
+
+    <p>
+      It started with ordinary conversations,
+      random jokes and countless little moments.
+    </p>
+
+    <p>
+      But somewhere along the way,
+      Anees and Kuchu Puchu became more than
+      just two names.
+    </p>
+
+    <p>
+      They became a collection of memories,
+      laughter, trust and moments that are
+      impossible to replace.
+    </p>
+
+    <div class="quote">
+      "Some people become your favorite chapter
+      without even realizing they are writing it."
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MEMORIES -->
+
+<section id="memories">
+
+  <div class="title reveal">
+
+    <small>Chapter 02</small>
+
+    <h2>Little Things</h2>
+
+  </div>
+
+  <div class="cards">
+
+    <div class="card reveal">
+
+      <div class="num">
+        01
+      </div>
+
+      <h3>
+        Endless Talks
+      </h3>
+
+      <p>
+        Those random conversations that somehow
+        never seem to end.
+      </p>
+
+    </div>
+
+
+    <div class="card reveal">
+
+      <div class="num">
+        02
+      </div>
+
+      <h3>
+        Crazy Laughs
+      </h3>
+
+      <p>
+        The jokes that make absolutely no sense
+        but still become the funniest memories.
+      </p>
+
+    </div>
+
+
+    <div class="card reveal">
+
+      <div class="num">
+        03
+      </div>
+
+      <h3>
+        Always There
+      </h3>
+
+      <p>
+        Through every mood, every problem and
+        every random moment — friendship stays.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- LETTER -->
+
+<section id="letter">
+
+  <div class="title reveal">
+
+    <small>Chapter 03</small>
+
+    <h2>A Letter</h2>
+
+  </div>
+
+
+  <div class="letter reveal">
+
+    <div class="heart">
+      ❤️
+    </div>
+
+    <p>
+
+      Dear Kuchu Puchu,
+
+      <br><br>
+
+      Life keeps changing and time keeps moving,
+      but some people become a permanent part
+      of our memories.
+
+      <br><br>
+
+      Thank you for all the laughs,
+      random conversations, stupid moments
+      and memories that make ordinary days
+      feel special.
+
+      <br><br>
+
+      No matter where life takes us,
+      I hope we always have a reason to smile
+      when we remember these days.
+
+      <br><br>
+
+      Stay happy, stay amazing,
+      and never forget how special
+      this friendship is.
+
+    </p>
+
+    <div class="signature">
+      — Anees ❤️
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="final">
+
+  <div class="reveal">
+
+    <h2>
+      Anees &<br>
+      <span>Kuchu Puchu</span>
+    </h2>
+
+    <p>
+      One friendship. Countless memories. ❤️
+    </p>
+
+    <div class="final-heart">
+      ❤️
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+  MADE WITH ❤️ BY ANEES
+</footer>
+
+
+<script>
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const elements =
+  document.querySelectorAll(".reveal");
+
+const observer =
+  new IntersectionObserver(
+    function(entries){
+
+      entries.forEach(function(entry){
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("show");
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.15
+    }
+  );
+
+elements.forEach(function(el){
+  observer.observe(el);
+});
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+function createHeart(){
+
+  const heart =
+    document.createElement("div");
+
+  heart.className =
+    "float-heart";
+
+  const hearts=[
+    "❤️",
+    "💗",
+    "💕",
+    "✨",
+    "🤍"
+  ];
+
+  heart.innerHTML =
+    hearts[
+      Math.floor(
+        Math.random()*hearts.length
+      )
+    ];
+
+  heart.style.left =
+    Math.random()*100+"vw";
+
+  heart.style.fontSize =
+    (12+Math.random()*16)+"px";
+
+  heart.style.animationDuration =
+    (4+Math.random()*4)+"s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(function(){
+    heart.remove();
+  },8000);
+
+}
+
+setInterval(createHeart,1400);
+
+</script>
+
+</body>
+</html>
